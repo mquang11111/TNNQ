@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Card</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
+        html, body {
+            overflow-x: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        :root {
+            --primary-color: #4c9fc9;
+            --secondary-color: #a5d8ff;
+            --tertiary-color: #e8f4ff;
+            --background-color: rgba(255, 255, 255, 0.15);
+            --text-color: #fff;
+            --card-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('yue.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+                        inset 0 0 20px rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: auto;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: var(--secondary-color);
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3),
+                         0 0 20px rgba(165, 216, 255, 0.5);
+        }
+
+        .content {
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .label {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(165, 216, 255, 0.5);
+        }
+
+        .value {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            word-wrap: break-word;
+            color: var(--text-color);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: fall 6s linear infinite;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.5rem;
+                background-attachment: scroll;
+            }
+
+            .card {
+                padding: 1.25rem;
+                margin: 0.5rem;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .content {
+                padding: 0.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .label {
+                font-size: 0.9rem;
+            }
+
+            .value {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+
+            .confetti {
+                width: 6px;
+                height: 6px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            body {
+                padding: 0.25rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .content {
+                padding: 0.5rem;
+            }
+
+            .label {
+                font-size: 0.85rem;
+            }
+
+            .value {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (orientation: landscape) and (max-height: 500px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .card {
+                padding: 1rem;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .content {
+                margin-bottom: 0.75rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .card {
+                max-width: 500px;
+                padding: 2.5rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .content {
+                padding: 1.25rem;
+            }
+
+            .value {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .content {
+                cursor: default;
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+
+        .value-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            position: relative;
+        }
+
+        .copy-button {
+            background: var(--secondary-color);
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            color: #333;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            min-width: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .copy-button:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .copy-button:active {
+            transform: scale(0.95);
+        }
+
+        .copy-button.copied {
+            background: #4CAF50;
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            .copy-button {
+                padding: 4px 8px;
+                font-size: 0.8rem;
+                min-width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Happy Birthday!</h1>
+        <div class="content">
+            <div class="label">Gửi tới:</div>
+            <div class="value">Trần Ngọc Như Quỳnh</div>
+        </div>
+        <div class="content">
+            <div class="label">Tên thẻ</div>
+            <div class="value">Garena</div>
+        </div>
+        <div class="content">
+            <div class="label">Mã thẻ</div>
+            <div class="value-container">
+                <div class="value" id="cardCode">5890092296752347</div>
+                <button class="copy-button" onclick="copyCardCode()">Copy</button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="label">Nội dung</div>
+            <div class="value">
+                Gửi em thêm một món quà nhỏ, mong em sớm hàn huyên cùng 2 con vợ nhé :>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createConfetti() {
+            const body = document.body;
+            const colors = ['#a5d8ff', '#e8f4ff', '#ffffff', '#4c9fc9', '#b8e2ff'];
+            
+            const particleCount = 18;
+            const animationDuration = 8000;
+
+            for (let i = 0; i < particleCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = '-10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = `${Math.random() * animationDuration/1000}s`;
+                body.appendChild(confetti);
+
+                confetti.addEventListener('animationend', () => {
+                    confetti.remove();
+                });
+            }
+
+            setTimeout(createConfetti, animationDuration);
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(createConfetti, 500);
+        });
+
+        function copyCardCode() {
+            const cardCode = document.getElementById('cardCode').textContent;
+            const button = document.querySelector('.copy-button');
+            
+            navigator.clipboard.writeText(cardCode).then(() => {
+                button.classList.add('copied');
+                button.textContent = 'Copied!';
+                
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.textContent = 'Copy';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                button.textContent = 'Error!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
